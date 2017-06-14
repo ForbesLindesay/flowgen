@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index.example.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+export type Foo = 'foo';
+export type Bar = 'bar';
+"
+`;

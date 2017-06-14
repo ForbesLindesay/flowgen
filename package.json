@@ -1,33 +1,49 @@
 {
-  "name": "flowgen",
-  "version": "1.2.0",
+  "name": "flowgen2",
+  "version": "2.0.0-alpha.1",
   "description": "Generate flowtype definition files from TypeScript",
   "main": "lib/index.js",
+  "types": "./lib/index.d.ts",
   "scripts": {
-    "compile": "babel --out-dir lib ./src",
-    "compile:watch": "npm run compile -- -w",
+    "build": "tsc",
+    "postbuild": "rimraf lib/__tests__",
     "test": "jest"
   },
   "bin": {
-    "flowgen": "./lib/cli/index.js"
+    "flowgen": "./lib/cli.js",
+    "flowgen2": "./lib/cli.js"
   },
   "files": [
-    "lib"
+    "lib",
+    "types"
   ],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "babel-cli": "6.18.0",
-    "babel-preset-es2015": "6.18.0",
-    "babel-preset-react": "6.16.0",
-    "babel-preset-stage-2": "6.18.0",
-    "commander": "2.9.0",
-    "esformatter": "^0.10.0",
-    "jest": "17.0.3",
-    "js-beautify": "^1.6.7",
-    "lodash": "4.9.0",
-    "paralleljs": "^0.2.1",
-    "typescript": "2.1.4",
-    "typescript-compiler": "^1.4.1-2"
+    "@types/node": "^7.0.31",
+    "@types/resolve": "0.0.4",
+    "prettier": "^1.4.4",
+    "resolve": "^1.3.3",
+    "typescript": "^2.3.4"
+  },
+  "devDependencies": {
+    "@types/jest": "^19.2.4",
+    "jest": "^20.0.4",
+    "rimraf": "^2.6.1",
+    "ts-jest": "^20.0.6"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testMatch": [
+      "**/*.test.(ts|tsx|js)"
+    ]
   }
 }

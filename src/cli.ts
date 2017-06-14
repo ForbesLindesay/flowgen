@@ -1,0 +1,1 @@
+console.log('The CLI is a work in progress');
