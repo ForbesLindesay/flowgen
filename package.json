@@ -5,8 +5,10 @@
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "tsc",
     "postbuild": "rimraf lib/__tests__",
+    "pretest": "npm run build",
     "test": "jest"
   },
   "bin": {
