@@ -1,5 +1,6 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
+import transformClassDeclaration from './transformClassDeclaration';
 import transformExportAssignment from './transformExportAssignment';
 import transformExportDeclaration from './transformExportDeclaration';
 import transformImportDeclaration from './transformImportDeclaration';
@@ -7,6 +8,8 @@ import transformTypeAliasDeclaration from './transformTypeAliasDeclaration';
 
 export default function transformStatement(statement: tt.Statement, scope: Scope): string {
   switch (statement.kind) {
+    case tt.SyntaxKind.ClassDeclaration:
+      return transformClassDeclaration(statement as tt.ClassDeclaration, scope);
     case tt.SyntaxKind.ExportAssignment:
       return transformExportAssignment(statement as tt.ExportAssignment, scope);
     case tt.SyntaxKind.ExportDeclaration:

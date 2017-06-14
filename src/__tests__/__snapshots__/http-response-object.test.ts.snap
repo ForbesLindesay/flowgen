@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`headers.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+export type Headers = {+[name: string]: string};
+"
+`;
+
+exports[`index.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {Headers} from './headers';
+declare class Response {
+  +statusCode: number,
+  +headers: Headers,
+  +body: Buffer | string,
+  +url: string,
+  constructor(
+    statusCode: number,
+    headers: Headers,
+    body: Buffer | string,
+    url: string,
+  ): void,
+  getBody(encoding: string): string,
+  getBody(): Buffer | string,
+}
+module.exports = Response;
+"
+`;
