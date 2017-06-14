@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import {writeFileSync} from 'fs';
 import {sync as lsr} from 'lsr';
 import {isMatch} from 'micromatch';
