@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./CachedResponse.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {Headers} from './Headers';
+
+interface CachedResponse {
+  statusCode: number,
+  headers: Headers,
+  body: stream$Readable,
+  requestHeaders: Headers,
+  requestTimestamp: number,
+}
+
+export type {CachedResponse};
+"
+`;
+
+exports[`./Callback.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+type Response = any;
+type Callback = (
+  err: ErrnoError | null,
+  response?: Response<stream$Readable>,
+) => void;
+export type {Callback};
+"
+`;
+
+exports[`./FileCache.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {ICache} from './ICache';
+import {CachedResponse} from './CachedResponse';
+
+declare class FileCache {
+  constructor(location: string): void,
+  getResponse(
+    url: string,
+    callback: (err: null | Error, response: null | CachedResponse) => void,
+  ): void,
+  setResponse(url: string, response: CachedResponse): void,
+  invalidateResponse(
+    url: string,
+    callback: (err: ErrnoError | null) => void,
+  ): void,
+}
+"
+`;
+
+exports[`./Headers.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+export type Headers = {+[name: string]: string | Array<string>};
+"
+`;
+
+exports[`./HttpVerb.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+type HttpVerb =
+  | 'GET'
+  | 'HEAD'
+  | 'POST'
+  | 'PUT'
+  | 'DELETE'
+  | 'CONNECT'
+  | 'OPTIONS'
+  | 'TRACE'
+  | 'PATCH';
+export type {HttpVerb};
+"
+`;
+
+exports[`./ICache.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {CachedResponse} from './CachedResponse';
+
+interface ICache {
+  getResponse(
+    url: string,
+    cb: (err: Error | null, response: CachedResponse | null) => void,
+  ): void,
+  setResponse(url: string, response: CachedResponse | null): void,
+  invalidateResponse(url: string, cb: (err: Error | null) => void): void,
+}
+
+export type {ICache};
+"
+`;
+
+exports[`./MemoryCache.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {CachedResponse} from './CachedResponse';
+
+declare class MemoryCache {
+  getResponse(
+    url: string,
+    callback: (err: null | Error, response: null | CachedResponse) => void,
+  ): void,
+  setResponse(url: string, response: CachedResponse): void,
+  invalidateResponse(
+    url: string,
+    callback: (err: ErrnoError | null) => void,
+  ): void,
+}
+"
+`;
+
+exports[`./Options.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {Agent} from 'http';
+import type {Headers} from './Headers';
+import {ICache} from './ICache';
+import {CachedResponse} from './CachedResponse';
+type Response = any;
+
+interface Options {
+  agent?: Agent | boolean,
+  allowRedirectHeaders?: Array<string>,
+  cache?: 'file' | 'memory' | ICache,
+  followRedirects?: boolean,
+  gzip?: boolean,
+  headers?: Headers,
+  ignoreFailedInvalidation?: boolean,
+  maxRedirects?: number,
+  maxRetries?: number,
+  retry?: boolean,
+  retryDelay?:
+    | number
+    | ((
+        err: ErrnoError | null,
+        res: Response<stream$Readable> | void,
+        attemptNumber: number,
+      ) => number),
+  socketTimeout?: number,
+  timeout?: number,
+  isMatch?: (
+    requestHeaders: Headers,
+    cachedResponse: CachedResponse,
+    defaultValue: boolean,
+  ) => boolean,
+  isExpired?: (
+    cachedResponse: CachedResponse,
+    defaultValue: boolean,
+  ) => boolean,
+  canCache?: (res: Response<stream$Readable>, defaultValue: boolean) => boolean,
+}
+
+export type {Options};
+"
+`;
+
+exports[`./cache-control-utils.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {CachedResponse} from './CachedResponse';
+type Response = any;
+export type Policy = {maxage: number | null};
+declare function isCacheable<T>(res: Response<T> | CachedResponse): boolean;
+declare function cachePolicy<T>(
+  res: Response<T> | CachedResponse,
+): Policy | null;
+"
+`;
+
+exports[`./cache-utils.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {Headers} from './Headers';
+import {CachedResponse} from './CachedResponse';
+type Response = any;
+declare function isMatch(
+  requestHeaders: Headers,
+  cachedResponse: CachedResponse,
+): boolean;
+declare function isExpired(cachedResponse: CachedResponse): boolean;
+declare function canCache<T>(res: Response<T>): boolean;
+"
+`;
+
+exports[`./index.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+"
+`;

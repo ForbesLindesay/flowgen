@@ -1,17 +1,43 @@
 import {dirname} from 'path';
+import {statSync} from 'fs';
 import * as tt from 'typescript';
 import {sync as resolve} from 'resolve';
 import Scope from './Scope';
 import transformIdentifier from './transformIdentifier';
 import transformStringLiteral from './transformStringLiteral';
 
+function packageFilter(pkg: any) {
+  if (pkg.main) {
+    delete pkg.main;
+  }
+  if (pkg.types) {
+    pkg.main = pkg.types;
+  }
+}
+function tryResolve(name: string, dirname: string) {
+  try {
+    const filename = resolve(name, {basedir: dirname, extensions: ['.d.ts']});
+    statSync(filename);
+    return filename;
+  } catch (ex) {
+    if (name[0] !== '.') {
+      try {
+        const filename = resolve('@types/' + name, {basedir: dirname, extensions: ['.d.ts']});
+        statSync(filename);
+        return filename;
+      } catch (ex) {}
+    }
+  }
+  return null;
+}
 export default function transformImportDeclaration(statement: tt.ImportDeclaration, scope: Scope): string {
   if (!statement.importClause) {
     return '';
   }
   const moduleSpecifier = statement.moduleSpecifier as tt.StringLiteral;
   const importedFileName = transformStringLiteral(moduleSpecifier, scope);
-  const importedScope = scope.context.transform(resolve(moduleSpecifier.text + '.d.ts', {basedir: dirname(scope.source.fileName)})).scope;
+  const filename = tryResolve(moduleSpecifier.text, dirname(scope.source.fileName));
+  const importedScope = filename ? scope.context.transform(filename).scope : new Scope(scope.source, scope.context);
 
   const result: Array<string> = [];
   const {name, namedBindings} = statement.importClause;

@@ -1,19 +1,18 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
 import hasModifier from './hasModifier';
-import transformIdentifier from './transformIdentifier';
-import transformPropertyName from './transformPropertyName';
-import transformTypeNode from './transformTypeNode';
-
-function transformParameters(parameter: any, scope: Scope) {
-  return `[${transformIdentifier(parameter.name, scope)}: ${transformTypeNode(parameter.type, scope)}]`;
-}
+import transformMethodSignature from './transformMethodSignature';
+import transformIndexSignature from './transformIndexSignature';
+import transformPropertySignature from './transformPropertySignature';
 
 export default function transformTypeElement(node: tt.TypeElement, scope: Scope): string {
-  const covariant = hasModifier(node, tt.SyntaxKind.ReadonlyKeyword) ? '+' : '';
-  const optional = node.questionToken ? '?' : '';
-  const key = node.name ? transformPropertyName(node.name, scope) : transformParameters((node as any).parameters[0], scope);
-  const value = transformTypeNode((node as any).type, scope);
-
-  return `${covariant}${key}${optional}: ${value}`;
+  switch (node.kind) {
+    case tt.SyntaxKind.MethodSignature:
+      return transformMethodSignature(<tt.MethodSignature>node, scope);
+    case tt.SyntaxKind.PropertySignature:
+      return transformPropertySignature(<tt.PropertySignature>node, scope);
+    case tt.SyntaxKind.IndexSignature:
+      return transformIndexSignature(<tt.IndexSignatureDeclaration>node, scope);
+  }
+  throw scope.createError('Unsupported type element kind ' + tt.SyntaxKind[node.kind], node);
 }
