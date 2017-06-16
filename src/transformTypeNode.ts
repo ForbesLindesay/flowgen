@@ -1,5 +1,6 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
+import transformArrayType from './transformArrayType';
 import transformExpression from './transformExpression';
 import transformTypeLiteral from './transformTypeLiteral';
 import transformTypeReference from './transformTypeReference';
@@ -19,6 +20,8 @@ export default function transformTypeNode(node: tt.TypeNode, scope: Scope): stri
       return transformTypeReference(node as tt.TypeReferenceNode, scope);
     case tt.SyntaxKind.UnionType:
       return transformUnionType(node as tt.UnionTypeNode, scope);
+    case tt.SyntaxKind.ArrayType:
+      return transformArrayType(node as tt.ArrayTypeNode, scope);
     // TODO: support more cases
   }
   throw scope.createError('Unsupported type kind ' + tt.SyntaxKind[node.kind], node);
