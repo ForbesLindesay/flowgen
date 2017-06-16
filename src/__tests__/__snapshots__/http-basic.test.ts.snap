@@ -204,9 +204,14 @@ import type {Options} from './Options';
 declare function request(
   method: HttpVerb,
   url: string,
-  options?: Options | Callback | null,
-  callback?: Callback | null,
-): void | NodeJS.WritableStream;
+  options: Options | null | void,
+  callback: Callback,
+): void | stream$Writable;
+declare function request(
+  method: HttpVerb,
+  url: string,
+  callback: Callback,
+): void | stream$Writable;
 module.exports = request;
 "
 `;

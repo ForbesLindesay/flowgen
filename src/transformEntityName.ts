@@ -4,13 +4,14 @@ import transformIdentifier from './transformIdentifier';
 
 const aliases: {[key: string]: string} = {
   'NodeJS.ErrnoException': 'ErrnoError',
-  'NodeJS.ReadableStream': 'stream$Readable'
+  'NodeJS.ReadableStream': 'stream$Readable',
+  'NodeJS.WritableStream': 'stream$Writable'
 };
 function resolveAlias(name: string): string {
   if (typeof aliases[name] === 'string') {
     return aliases[name];
   }
-  if (/$NodeJS\./.test(name)) {
+  if (/^NodeJS\./.test(name)) {
     throw new Error(`Unrecognised NodeJS entity name "${name}". Please submit a pull request to https://github.com/ForbesLindesay/flowgen2 to add the appropriate "alias" to "transformEntityName.ts"`);
   }
   return name;
