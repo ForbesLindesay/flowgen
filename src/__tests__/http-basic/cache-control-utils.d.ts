@@ -1,5 +1,5 @@
 import { CachedResponse } from './CachedResponse';
-type Response<T> = any;
+import Response = require('../http-response-object-2');
 export declare type Policy = {
     maxage: number | null;
 };

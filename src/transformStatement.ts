@@ -5,6 +5,7 @@ import transformExportAssignment from './transformExportAssignment';
 import transformExportDeclaration from './transformExportDeclaration';
 import transformFunctionDeclaration from './transformFunctionDeclaration';
 import transformImportDeclaration from './transformImportDeclaration';
+import transformImportEqualsDeclaration from './transformImportEqualsDeclaration';
 import transformInterfaceDeclaration from './transformInterfaceDeclaration';
 import transformTypeAliasDeclaration from './transformTypeAliasDeclaration';
 
@@ -20,6 +21,8 @@ export default function transformStatement(statement: tt.Statement, scope: Scope
       return transformFunctionDeclaration(statement as tt.FunctionDeclaration, scope);
     case tt.SyntaxKind.ImportDeclaration:
       return transformImportDeclaration(statement as tt.ImportDeclaration, scope);
+    case tt.SyntaxKind.ImportEqualsDeclaration:
+      return transformImportEqualsDeclaration(<tt.ImportEqualsDeclaration>statement, scope);
     case tt.SyntaxKind.TypeAliasDeclaration:
       return transformTypeAliasDeclaration(statement as tt.TypeAliasDeclaration, scope);
     case tt.SyntaxKind.InterfaceDeclaration:

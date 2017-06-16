@@ -22,7 +22,7 @@ exports[`./Callback.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-type Response = any;
+const Response = require('../http-response-object-2');
 type Callback = (
   err: ErrnoError | null,
   response?: Response<stream$Readable>,
@@ -35,8 +35,8 @@ exports[`./FileCache.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-import {ICache} from './ICache';
-import {CachedResponse} from './CachedResponse';
+import type {ICache} from './ICache';
+import type {CachedResponse} from './CachedResponse';
 
 declare class FileCache {
   constructor(location: string): void,
@@ -83,7 +83,7 @@ exports[`./ICache.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-import {CachedResponse} from './CachedResponse';
+import type {CachedResponse} from './CachedResponse';
 
 interface ICache {
   getResponse(
@@ -102,7 +102,7 @@ exports[`./MemoryCache.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-import {CachedResponse} from './CachedResponse';
+import type {CachedResponse} from './CachedResponse';
 
 declare class MemoryCache {
   getResponse(
@@ -124,8 +124,8 @@ exports[`./Options.d.ts 1`] = `
 
 import {Agent} from 'http';
 import type {Headers} from './Headers';
-import {ICache} from './ICache';
-import {CachedResponse} from './CachedResponse';
+import type {ICache} from './ICache';
+import type {CachedResponse} from './CachedResponse';
 type Response = any;
 
 interface Options {
@@ -168,8 +168,8 @@ exports[`./cache-control-utils.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-import {CachedResponse} from './CachedResponse';
-type Response = any;
+import type {CachedResponse} from './CachedResponse';
+const Response = require('../http-response-object-2');
 export type Policy = {maxage: number | null};
 declare function isCacheable<T>(res: Response<T> | CachedResponse): boolean;
 declare function cachePolicy<T>(
@@ -183,8 +183,8 @@ exports[`./cache-utils.d.ts 1`] = `
 // Generated using flowgen2
 
 import type {Headers} from './Headers';
-import {CachedResponse} from './CachedResponse';
-type Response = any;
+import type {CachedResponse} from './CachedResponse';
+const Response = require('../http-response-object-2');
 declare function isMatch(
   requestHeaders: Headers,
   cachedResponse: CachedResponse,
@@ -197,5 +197,16 @@ declare function canCache<T>(res: Response<T>): boolean;
 exports[`./index.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
+
+import type {Callback} from './Callback';
+import type {HttpVerb} from './HttpVerb';
+import type {Options} from './Options';
+declare function request(
+  method: HttpVerb,
+  url: string,
+  options?: Options | Callback | null,
+  callback?: Callback | null,
+): void | NodeJS.WritableStream;
+module.exports = request;
 "
 `;

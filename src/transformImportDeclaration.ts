@@ -6,6 +6,8 @@ import Scope from './Scope';
 import transformIdentifier from './transformIdentifier';
 import transformStringLiteral from './transformStringLiteral';
 
+// TODO: share code with transformImportEqualsDeclaration
+
 function packageFilter(pkg: any) {
   if (pkg.main) {
     delete pkg.main;

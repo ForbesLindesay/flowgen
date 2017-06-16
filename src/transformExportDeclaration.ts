@@ -7,6 +7,7 @@ export default function transformExportAssignment(statement: tt.ExportDeclaratio
   return statement.exportClause.elements.map(element => {
     const exported = element.name.text;
     const local = (element.propertyName || element.name).text;
+    scope.addExport(exported, local);
     const specifierText = exported === local ? `{${local}}` : `{${local} as ${exported}}`;
     if (scope.localTypes.has(local)) {
       return `export type ${specifierText};`;
