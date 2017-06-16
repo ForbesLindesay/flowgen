@@ -1,5 +1,6 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
+import declarationExports from './declarationExports';
 import transformIdentifier from './transformIdentifier';
 import transformClassElement from './transformClassElement';
 import transformTypeParameters from './transformTypeParameters';
@@ -13,5 +14,6 @@ export default function transformClassDeclaration(node: tt.ClassDeclaration, sco
     declare class ${transformIdentifier(node.name, scope)}${typeParameters} {
       ${node.members.map(element => transformClassElement(element, scope)).join('')}
     }
+    ${declarationExports(node, scope)}
   `;
 }

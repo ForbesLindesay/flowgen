@@ -50,6 +50,7 @@ declare class FileCache {
     callback: (err: ErrnoError | null) => void,
   ): void,
 }
+export default FileCache;
 "
 `;
 
@@ -115,6 +116,7 @@ declare class MemoryCache {
     callback: (err: ErrnoError | null) => void,
   ): void,
 }
+export default MemoryCache;
 "
 `;
 
@@ -171,10 +173,14 @@ exports[`./cache-control-utils.d.ts 1`] = `
 import type {CachedResponse} from './CachedResponse';
 const Response = require('../http-response-object-2');
 export type Policy = {maxage: number | null};
+
 declare function isCacheable<T>(res: Response<T> | CachedResponse): boolean;
+export {isCacheable};
+
 declare function cachePolicy<T>(
   res: Response<T> | CachedResponse,
 ): Policy | null;
+export {cachePolicy};
 "
 `;
 
@@ -185,12 +191,18 @@ exports[`./cache-utils.d.ts 1`] = `
 import type {Headers} from './Headers';
 import type {CachedResponse} from './CachedResponse';
 const Response = require('../http-response-object-2');
+
 declare function isMatch(
   requestHeaders: Headers,
   cachedResponse: CachedResponse,
 ): boolean;
+export {isMatch};
+
 declare function isExpired(cachedResponse: CachedResponse): boolean;
+export {isExpired};
+
 declare function canCache<T>(res: Response<T>): boolean;
+export {canCache};
 "
 `;
 
@@ -201,17 +213,20 @@ exports[`./index.d.ts 1`] = `
 import type {Callback} from './Callback';
 import type {HttpVerb} from './HttpVerb';
 import type {Options} from './Options';
+
 declare function request(
   method: HttpVerb,
   url: string,
   options: Options | null | void,
   callback: Callback,
 ): void | stream$Writable;
+
 declare function request(
   method: HttpVerb,
   url: string,
   callback: Callback,
 ): void | stream$Writable;
+
 module.exports = request;
 "
 `;

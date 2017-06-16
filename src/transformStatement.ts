@@ -8,6 +8,7 @@ import transformImportDeclaration from './transformImportDeclaration';
 import transformImportEqualsDeclaration from './transformImportEqualsDeclaration';
 import transformInterfaceDeclaration from './transformInterfaceDeclaration';
 import transformTypeAliasDeclaration from './transformTypeAliasDeclaration';
+import transformVariableStatement from './transformVariableStatement';
 
 export default function transformStatement(statement: tt.Statement, scope: Scope): string {
   switch (statement.kind) {
@@ -27,6 +28,9 @@ export default function transformStatement(statement: tt.Statement, scope: Scope
       return transformTypeAliasDeclaration(statement as tt.TypeAliasDeclaration, scope);
     case tt.SyntaxKind.InterfaceDeclaration:
       return transformInterfaceDeclaration(statement as tt.InterfaceDeclaration, scope);
+    case tt.SyntaxKind.VariableStatement:
+      return transformVariableStatement(statement as tt.VariableStatement, scope);
+    
     // TODO: support more cases
   }
   throw scope.createError('Unsupported statement kind ' + tt.SyntaxKind[statement.kind], statement);
