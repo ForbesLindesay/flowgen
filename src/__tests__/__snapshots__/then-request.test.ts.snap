@@ -75,7 +75,7 @@ exports[`./ResponsePromise.d.ts 1`] = `
 const Promise = require('promise');
 const Response = require('../http-response-object-2');
 
-declare class ResponsePromise {
+declare class ResponsePromise extends Promise<Response<Buffer | string>> {
   getBody(encoding: string): Promise<string>,
   getBody(): Promise<Buffer | string>,
 }
