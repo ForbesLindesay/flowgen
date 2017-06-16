@@ -9,7 +9,7 @@ function transformParameters(parameter: any, scope: Scope) {
   return `[${transformIdentifier(parameter.name, scope)}: ${transformTypeNode(parameter.type, scope)}]`;
 }
 
-export default function transformTypeLiteral(node: tt.TypeElement, scope: Scope): string {
+export default function transformTypeElement(node: tt.TypeElement, scope: Scope): string {
   const covariant = hasModifier(node, tt.SyntaxKind.ReadonlyKeyword) ? '+' : '';
   const optional = node.questionToken ? '?' : '';
   const key = node.name ? transformPropertyName(node.name, scope) : transformParameters((node as any).parameters[0], scope);

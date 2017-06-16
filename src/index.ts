@@ -9,6 +9,3 @@ export function transformString(filename: string, source: string): string {
 export function transformFile(filename: string): string {
   return transformString(filename, readFileSync(filename, 'utf8'));
 }
-
-
-// TODO: use micromatch to transform using pattern
