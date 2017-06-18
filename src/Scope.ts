@@ -5,7 +5,9 @@ export default class Scope {
   readonly source: tt.SourceFile;
   readonly context: TransformContext;
   readonly localTypes: Set<string> = new Set();
-  readonly exportedTypes: Set<String> = new Set();
+  readonly exportedTypes: Set<string> = new Set();
+  readonly localEnums: Set<string> = new Set();
+  readonly exportedEnums: Set<string> = new Set();
   constructor(source: tt.SourceFile, context: TransformContext) {
     this.source = source;
     this.context = context;
@@ -22,5 +24,11 @@ export default class Scope {
     if (this.localTypes.has(local || exported)) {
       this.exportedTypes.add(exported);
     }
+    if (this.localEnums.has(local || exported)) {
+      this.exportedEnums.add(exported);
+    }
+  }
+  addEnum(name: string) {
+    this.localEnums.add(name);
   }
 }

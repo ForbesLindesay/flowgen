@@ -44,11 +44,16 @@ export default function transformImportDeclaration(statement: tt.ImportDeclarati
   const result: Array<string> = [];
   const {name, namedBindings} = statement.importClause;
   if (name) {
+    const n = transformIdentifier(name, scope);
     if (importedScope.exportedTypes.has('default')) {
       scope.addLocalTypeName(name.text);
-      result.push(`import type ${transformIdentifier(name, scope)} from ${importedFileName};`);
+      result.push(`import type ${n} from ${importedFileName};`);
     } else {
-      result.push(`import ${transformIdentifier(name, scope)} from ${importedFileName};`);
+      if (importedScope.exportedEnums.has('default')) {
+        scope.addEnum(name.text);
+        result.push(`import type {defaultType as ${n}Type} from ${importedFileName};`)
+      }
+      result.push(`import ${n} from ${importedFileName};`);
     }
   }
   if (namedBindings) {
@@ -64,8 +69,17 @@ export default function transformImportDeclaration(statement: tt.ImportDeclarati
           const specifierText = local === imported ? `{${local}}` : `{${imported} as ${local}}`;
           if (importedScope.exportedTypes.has(imported)) {
             scope.addLocalTypeName(local);
+            const specifierText = local === imported ? `{${local}}` : `{${imported} as ${local}}`;
             result.push(`import type ${specifierText} from ${importedFileName};`);
           } else {
+            if (importedScope.exportedEnums.has(imported)) {
+              scope.addEnum(local);
+              if (imported === local) {
+                result.push(`import type {${local}Type} from ${importedFileName};`);
+              } else {
+                result.push(`import type {${imported}Type as ${local}Type} from ${importedFileName};`);
+              }
+            }
             result.push(`import ${specifierText} from ${importedFileName};`);
           }
         });

@@ -1,6 +1,7 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
 import transformClassDeclaration from './transformClassDeclaration';
+import transformEnumDeclaration from './transformEnumDeclaration';
 import transformExportAssignment from './transformExportAssignment';
 import transformExportDeclaration from './transformExportDeclaration';
 import transformFunctionDeclaration from './transformFunctionDeclaration';
@@ -14,6 +15,8 @@ export default function transformStatement(statement: tt.Statement, scope: Scope
   switch (statement.kind) {
     case tt.SyntaxKind.ClassDeclaration:
       return transformClassDeclaration(statement as tt.ClassDeclaration, scope);
+    case tt.SyntaxKind.EnumDeclaration:
+      return transformEnumDeclaration(statement as tt.EnumDeclaration, scope);
     case tt.SyntaxKind.ExportAssignment:
       return transformExportAssignment(statement as tt.ExportAssignment, scope);
     case tt.SyntaxKind.ExportDeclaration:

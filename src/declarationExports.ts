@@ -11,11 +11,15 @@ export default function declarationExports(node: ts.DeclarationStatement, scope:
   if (!hasModifier(node, ts.SyntaxKind.ExportKeyword)) {
     return '';
   }
-  const id = transformIdentifier(name, scope);
+  const id = name.text;
+  let enumStr = '';
+  if (scope.localEnums.has(id)) {
+    enumStr = `export type {${id}Type};`;
+  }
   if (hasModifier(node, ts.SyntaxKind.DefaultKeyword)) {
     scope.addExport('default', id);
-    return `export default ${id};`;
+    return `${enumStr}export default ${id};`;
   }
   scope.addExport(id, id);
-  return `export {${transformIdentifier(name, scope)}};`;
+  return `${enumStr}export {${id}};`;
 }

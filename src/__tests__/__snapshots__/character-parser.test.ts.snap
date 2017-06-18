@@ -1,0 +1,108 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./contrived-demo.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {StackElementType} from './index';
+import {StackElement} from './index';
+export type {StackElementType as FooType};
+export {StackElement as Foo};
+
+declare function getString(element: StackElementType): string;
+
+export {getString};
+export type {StackElementType as defaultType};
+export default StackElement;
+"
+`;
+
+exports[`./contrived-demo-2.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {defaultType as StackElementType} from './contrived-demo';
+import StackElement from './contrived-demo';
+import type {FooType as SEType} from './contrived-demo';
+import {Foo as SE} from './contrived-demo';
+export type {SEType};
+export {SE};
+export type {StackElementType as defaultType};
+export default StackElement;
+"
+`;
+
+exports[`./index.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+type StackElementType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+interface IStackElement {
+  +LINE_COMMENT: 0,
+  +BLOCK_COMMENT: 1,
+  +SINGLE_QUOTE: 2,
+  +DOUBLE_QUOTE: 3,
+  +TEMPLATE_QUOTE: 4,
+  +REGEXP: 5,
+  +ROUND_BRACKET: 6,
+  +CURLY_BRACKET: 7,
+  +SQUARE_BRACKET: 8,
+  +0: 'LINE_COMMENT',
+  +1: 'BLOCK_COMMENT',
+  +2: 'SINGLE_QUOTE',
+  +3: 'DOUBLE_QUOTE',
+  +4: 'TEMPLATE_QUOTE',
+  +5: 'REGEXP',
+  +6: 'ROUND_BRACKET',
+  +7: 'CURLY_BRACKET',
+  +8: 'SQUARE_BRACKET',
+}
+
+declare var StackElement: IStackElement;
+export type {StackElementType};
+export {StackElement};
+
+declare class State {
+  stack: Array<StackElementType>,
+  regexpStart: boolean,
+  escaped: boolean,
+  hasDollar: boolean,
+  src: string,
+  history: string,
+  lastChar: string,
+  current(): StackElementType,
+  isString(): boolean,
+  isComment(): boolean,
+  isNesting(opts?: {+ignoreLineComment?: boolean}): boolean,
+}
+export {State};
+
+declare function defaultState(): State;
+export {defaultState};
+
+declare function parse(
+  src: string,
+  state?: State,
+  options?: {+start?: number, +end?: number},
+): State;
+export {parse};
+
+export default parse;
+
+declare function parseUntil(
+  src: string,
+  delimiter: string,
+  options?: {+start?: number, +end?: number, +ignoreLineComment?: boolean},
+): {start: number, end: number, src: string};
+export {parseUntil};
+
+declare function parseChar(character: string, state?: State): State;
+export {parseChar};
+
+declare function isPunctuator(c: string): boolean;
+export {isPunctuator};
+
+declare function isKeyword(id: string): boolean;
+export {isKeyword};
+"
+`;
