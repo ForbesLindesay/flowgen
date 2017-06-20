@@ -25,6 +25,7 @@
     "@types/micromatch": "^2.3.29",
     "@types/node": "^7.0.31",
     "@types/resolve": "0.0.4",
+    "babel-polyfill": "^6.23.0",
     "lsr": "^2.0.0",
     "micromatch": "^3.0.3",
     "prettier": "^1.4.4",

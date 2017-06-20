@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import {readFileSync} from 'fs';
 import TransformContext from './TransformContext';
 
