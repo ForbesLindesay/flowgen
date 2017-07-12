@@ -38,6 +38,7 @@ interface Variables {
   htmlBody?: string,
   [key: string]: any,
 }
+export {Variables};
 
 export type Variable = string | ((v: Variables) => string);
 interface ClientOptions<TUser> {
@@ -57,6 +58,7 @@ interface ClientOptions<TUser> {
   txtTemplate?: Variable,
   htmlTemplate?: Variable,
 }
+export {ClientOptions};
 
 declare function createClient<TUser>(
   obj: ClientOptions<TUser>,
@@ -81,7 +83,7 @@ exports[`./send-postmark-email.d.ts 1`] = `
 // Generated using flowgen2
 
 const Promise = require('promise');
-import {Variables} from './index';
+import type {Variables} from './index';
 
 declare function createClient(
   postmarkToken: string,

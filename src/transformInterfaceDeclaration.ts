@@ -1,5 +1,6 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
+import declarationExports from './declarationExports';
 import transformIdentifier from './transformIdentifier';
 import transformTypeElement from './transformTypeElement';
 import transformTypeParameters from './transformTypeParameters';
@@ -11,5 +12,6 @@ export default function transformInterfaceDeclaration(node: tt.InterfaceDeclarat
     interface ${transformIdentifier(node.name, scope)}${typeParameters} {
       ${node.members.map(element => transformTypeElement(element, scope)).join(';')}
     }
+    ${declarationExports(node, scope)}
   `;
 }
