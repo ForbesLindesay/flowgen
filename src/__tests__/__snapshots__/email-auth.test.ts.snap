@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./generate-token.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+
+declare function generateToken(): Promise<string>;
+export default generateToken;
+"
+`;
+
+exports[`./handle-qs.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+declare function handleQs(url: string, query: {[key: string]: string}): string;
+export default handleQs;
+
+declare function removeFields(url: string, fields: Array<string>): string;
+export {removeFields};
+"
+`;
+
+exports[`./index.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+
+interface Variables {
+  toAddress: string,
+  url: string,
+  fromAddress?: string,
+  subject?: string,
+  txtBody?: string,
+  htmlBody?: string,
+  [key: string]: any,
+}
+
+export type Variable = string | ((v: Variables) => string);
+interface ClientOptions<TUser> {
+  saveToken: (token: {email: string, token: string, expiry: number}) => Promise<
+    string,
+  >,
+  getTokenByID: (
+    id: string,
+  ) => Promise<{email: string, token: string, expiry: number} | null>,
+  developmentMode?: boolean,
+  getUserByEmail?: (email: string) => TUser | null | Promise<TUser | null>,
+  variables?: {[key: string]: any},
+  sendEmail?: (variables: Variables) => Promise<void>,
+  postmark?: string,
+  fromAddress?: Variable,
+  subject?: Variable,
+  txtTemplate?: Variable,
+  htmlTemplate?: Variable,
+}
+
+declare function createClient<TUser>(
+  obj: ClientOptions<TUser>,
+): {
+  sendMessage(
+    email: string,
+    redirectURL: string,
+  ): Promise<
+    | {emailSent: true, development: false}
+    | {emailSent: false, development: true, path: string},
+  >,
+  verifyToken(id: string, tokenProvidedByUser: string): Promise<TUser>,
+  stripToken(url: string): string,
+  generateUrl: (email: string, redirectURL: string) => Promise<string>,
+};
+export default createClient;
+"
+`;
+
+exports[`./send-postmark-email.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+import {Variables} from './index';
+
+declare function createClient(
+  postmarkToken: string,
+): (obj: Variables) => Promise<void>;
+export default createClient;
+"
+`;

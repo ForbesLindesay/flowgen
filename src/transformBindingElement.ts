@@ -1,6 +1,6 @@
 import * as tt from 'typescript';
 import Scope from './Scope';
-import transformIdentifier from './transformIdentifier';
+import transformBindingName from './transformBindingName';
 import transformObjectBindingPattern from './transformObjectBindingPattern';
 
 export default function transformBindingElement(node: tt.BindingElement, scope: Scope): string {

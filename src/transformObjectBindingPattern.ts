@@ -3,5 +3,6 @@ import Scope from './Scope';
 import transformBindingElement from './transformBindingElement';
 
 export default function transformObjectBindingPattern(pattern: tt.ObjectBindingPattern, scope: Scope): string {
-  return `{${pattern.elements.map(e => transformBindingElement(e, scope)).join(',')}}`
+  // flow does not need a name for these as the actual function implementations have already been discarded
+  return 'obj';
 }

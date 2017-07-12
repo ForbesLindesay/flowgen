@@ -13,6 +13,10 @@ export default function transformExpression(expression: tt.Expression, scope: Sc
       return transformStringLiteral(expression as tt.StringLiteral, scope);
     case tt.SyntaxKind.NumericLiteral:
       return transformNumericLiteral(expression as tt.NumericLiteral, scope);
+    case tt.SyntaxKind.TrueKeyword:
+      return 'true';
+    case tt.SyntaxKind.FalseKeyword:
+      return 'false';
   }
   throw scope.createError('Unsupported expression kind ' + tt.SyntaxKind[expression.kind], expression);
 }
