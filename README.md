@@ -15,7 +15,7 @@ Add something like the following to your package.json:
 ```
   "scripts": {
     "build": "tsc",
-    "postbuild": "flowgen lib/**/*"
+    "postbuild": "flowgen \"lib/**/*\""
   }
 ```
 
