@@ -18,7 +18,10 @@ function packageFilter(pkg: any) {
 }
 function tryResolve(name: string, dirname: string) {
   try {
-    const filename = resolve(name, {basedir: dirname, extensions: ['.d.ts']});
+    let filename = resolve(name, {basedir: dirname, extensions: ['.d.ts']});
+    if (/\.js$/.test(filename)) {
+      filename = filename.replace(/\.js$/, '.d.ts');
+    }
     statSync(filename);
     return filename;
   } catch (ex) {
