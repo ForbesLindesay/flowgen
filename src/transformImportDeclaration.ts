@@ -47,7 +47,7 @@ export default function transformImportDeclaration(statement: tt.ImportDeclarati
     const n = transformIdentifier(name, scope);
     if (importedScope.exportedTypes.has('default')) {
       scope.addLocalTypeName(name.text);
-      result.push(`import type ${n} from ${importedFileName};`);
+      result.push(`import type {defaultType as ${n}} from ${importedFileName};`);
     } else {
       if (importedScope.exportedEnums.has('default')) {
         scope.addEnum(name.text);

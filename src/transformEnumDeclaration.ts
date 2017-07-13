@@ -18,17 +18,16 @@ export default function transformEnumDeclaration(statement: tt.EnumDeclaration, 
 
   const typeDeclaration = `type ${name}Type = ${values};`;
   const valueDeclaration = `
-    interface I${name} {
+    declare var ${name}: {
       ${statement.members.map((m) => {
         return `+${transformPropertyName(m.name, scope)}: ${transformExpression(m.initializer as tt.Expression, scope)};`;
       }).join('')}
       ${statement.members.filter(m => !names.includes(transformExpression(m.initializer as tt.Expression, scope))).map((m) => {
-        const value = transformExpression(m.initializer as tt.Expression, scope);
-        return `+${value[0] === '-' ? `'${value}'` : value}: '${transformPropertyName(m.name, scope)}';`;
+        const initializer = (m.initializer as tt.Expression);
+        const value = transformExpression(initializer, scope);
+        return `+${initializer.kind !== tt.SyntaxKind.StringLiteral ? `'${value}'` : value}: '${transformPropertyName(m.name, scope)}';`;
       }).join('')}
-    }
-
-    declare var ${name}: I${name};
+    };
   `;
 
 

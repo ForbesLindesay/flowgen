@@ -38,9 +38,11 @@ interface Variables {
   htmlBody?: string,
   [key: string]: any,
 }
-export {Variables};
+export type {Variables};
 
-export type Variable = string | ((v: Variables) => string);
+type Variable = string | ((v: Variables) => string);
+export type {Variable};
+
 interface ClientOptions<TUser> {
   saveToken: (token: {email: string, token: string, expiry: number}) => Promise<
     string,
@@ -58,7 +60,7 @@ interface ClientOptions<TUser> {
   txtTemplate?: Variable,
   htmlTemplate?: Variable,
 }
-export {ClientOptions};
+export type {ClientOptions};
 
 declare function createClient<TUser>(
   obj: ClientOptions<TUser>,

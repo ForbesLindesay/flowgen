@@ -37,7 +37,7 @@ exports[`./index.d.ts 1`] = `
 // Generated using flowgen2
 
 type StackElementType = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
-interface IStackElement {
+declare var StackElement: {
   +LINE_COMMENT: 0,
   +BLOCK_COMMENT: 1,
   +SINGLE_QUOTE: 2,
@@ -47,18 +47,16 @@ interface IStackElement {
   +ROUND_BRACKET: 6,
   +CURLY_BRACKET: 7,
   +SQUARE_BRACKET: 8,
-  +0: 'LINE_COMMENT',
-  +1: 'BLOCK_COMMENT',
-  +2: 'SINGLE_QUOTE',
-  +3: 'DOUBLE_QUOTE',
-  +4: 'TEMPLATE_QUOTE',
-  +5: 'REGEXP',
-  +6: 'ROUND_BRACKET',
-  +7: 'CURLY_BRACKET',
-  +8: 'SQUARE_BRACKET',
-}
-
-declare var StackElement: IStackElement;
+  +'0': 'LINE_COMMENT',
+  +'1': 'BLOCK_COMMENT',
+  +'2': 'SINGLE_QUOTE',
+  +'3': 'DOUBLE_QUOTE',
+  +'4': 'TEMPLATE_QUOTE',
+  +'5': 'REGEXP',
+  +'6': 'ROUND_BRACKET',
+  +'7': 'CURLY_BRACKET',
+  +'8': 'SQUARE_BRACKET',
+};
 export type {StackElementType};
 export {StackElement};
 

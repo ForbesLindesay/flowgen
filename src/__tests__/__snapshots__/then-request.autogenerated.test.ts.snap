@@ -59,11 +59,13 @@ exports[`./RequestFn.d.ts 1`] = `
 import type {HttpVerb} from '../http-basic/HttpVerb';
 import type {Options} from './Options';
 import {ResponsePromise} from './ResponsePromise';
+
 type RequestFn = (
   method: HttpVerb,
   url: string,
   options?: Options,
 ) => ResponsePromise;
+
 export type {RequestFn};
 "
 `;

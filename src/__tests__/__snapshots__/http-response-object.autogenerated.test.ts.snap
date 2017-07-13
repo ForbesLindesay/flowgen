@@ -1,14 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`headers.d.ts 1`] = `
+exports[`./headers.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-export type Headers = {+[name: string]: string};
+type Headers = {+[name: string]: string};
+export type {Headers};
 "
 `;
 
-exports[`index.d.ts 1`] = `
+exports[`./index.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 

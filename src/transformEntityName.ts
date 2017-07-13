@@ -5,7 +5,9 @@ import transformIdentifier from './transformIdentifier';
 const aliases: {[key: string]: string} = {
   'NodeJS.ErrnoException': 'ErrnoError',
   'NodeJS.ReadableStream': 'stream$Readable',
-  'NodeJS.WritableStream': 'stream$Writable'
+  'NodeJS.WritableStream': 'stream$Writable',
+  'Partial': '$Shape',
+  'PromiseLike': 'Promise',
 };
 function resolveAlias(name: string): string {
   if (typeof aliases[name] === 'string') {

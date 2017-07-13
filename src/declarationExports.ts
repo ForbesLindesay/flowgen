@@ -18,8 +18,11 @@ export default function declarationExports(node: ts.DeclarationStatement, scope:
   }
   if (hasModifier(node, ts.SyntaxKind.DefaultKeyword)) {
     scope.addExport('default', id);
+    if (scope.localTypes.has(id)) {
+      return `export type {${id} as defaultType};`;
+    }
     return `${enumStr}export default ${id};`;
   }
   scope.addExport(id, id);
-  return `${enumStr}export {${id}};`;
+  return `${enumStr}export ${scope.localTypes.has(id) ? 'type' : ''} {${id}};`;
 }

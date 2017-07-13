@@ -23,10 +23,12 @@ exports[`./Callback.d.ts 1`] = `
 // Generated using flowgen2
 
 const Response = require('../http-response-object-2');
+
 type Callback = (
   err: ErrnoError | null,
   response?: Response<stream$Readable>,
 ) => void;
+
 export type {Callback};
 "
 `;
@@ -58,7 +60,8 @@ exports[`./Headers.d.ts 1`] = `
 "// @flow
 // Generated using flowgen2
 
-export type Headers = {+[name: string]: string | Array<string>};
+type Headers = {+[name: string]: string | Array<string>};
+export type {Headers};
 "
 `;
 
@@ -128,7 +131,8 @@ import {Agent} from 'http';
 import type {Headers} from './Headers';
 import type {ICache} from './ICache';
 import type {CachedResponse} from './CachedResponse';
-type Response = any;
+
+type Response<T> = any;
 
 interface Options {
   agent?: Agent | boolean,
@@ -172,7 +176,9 @@ exports[`./cache-control-utils.d.ts 1`] = `
 
 import type {CachedResponse} from './CachedResponse';
 const Response = require('../http-response-object-2');
-export type Policy = {maxage: number | null};
+
+type Policy = {maxage: number | null};
+export type {Policy};
 
 declare function isCacheable<T>(res: Response<T> | CachedResponse): boolean;
 export {isCacheable};
