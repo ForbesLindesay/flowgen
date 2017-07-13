@@ -1,0 +1,536 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`./BSONType.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+type BSONTypeType =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | -1
+  | 127;
+interface IBSONType {
+  +Double: 1,
+  +String: 2,
+  +Object: 3,
+  +Array: 4,
+  +BinaryData: 5,
+  +ObjectID: 7,
+  +Boolean: 8,
+  +Date: 9,
+  +Null: 10,
+  +RegularExpression: 11,
+  +JavaScript: 14,
+  +JavaSCriptWithScope: 15,
+  +Integer: 16,
+  +Timestamp: 17,
+  +Long: 18,
+  +Decimal: 19,
+  +MinKey: -1,
+  +MaxKey: 127,
+  +1: 'Double',
+  +2: 'String',
+  +3: 'Object',
+  +4: 'Array',
+  +5: 'BinaryData',
+  +7: 'ObjectID',
+  +8: 'Boolean',
+  +9: 'Date',
+  +10: 'Null',
+  +11: 'RegularExpression',
+  +14: 'JavaScript',
+  +15: 'JavaSCriptWithScope',
+  +16: 'Integer',
+  +17: 'Timestamp',
+  +18: 'Long',
+  +19: 'Decimal',
+  +'-1': 'MinKey',
+  +127: 'MaxKey',
+}
+
+declare var BSONType: IBSONType;
+
+export type {BSONTypeType as defaultType};
+export default BSONType;
+"
+`;
+
+exports[`./Bulk.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+
+declare class Bulk {
+  constructor(parent: any): void,
+  find(
+    query: any,
+  ): {
+    upsert(): any,
+    remove(): any,
+    removeOne(): any,
+    update(updateObj: any): any,
+    updateOne(updateObj: any): any,
+    replaceOne(updObj: any): any,
+  },
+  insert(doc: any): void,
+  tojson(): Object,
+  toString(): Object,
+  execute(): Promise<any>,
+}
+export default Bulk;
+"
+`;
+
+exports[`./Collection.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+import Bulk from './Bulk';
+import Cursor from './Cursor';
+import type IndexOptions from './IndexOptions';
+import Query from './Query';
+import SortOrder from './SortOrder';
+import Update from './Update';
+import type UpdateOptions from './UpdateOptions';
+
+declare class Collection<TRecord> {
+  constructor(parent: any): void,
+  find(query?: Query<TRecord>): Cursor<TRecord>,
+  find<TKey: $Keys<TRecord>>(
+    query: Query<TRecord>,
+    projection?: Record<TKey, 1>,
+  ): Cursor<Pick<TRecord, TKey>>,
+  findOne(query: Query<TRecord>): Promise<null | TRecord>,
+  findOne<TKey: $Keys<TRecord>>(
+    query: Query<TRecord>,
+    projection: Record<TKey, 1>,
+  ): Promise<null | Pick<TRecord, TKey>>,
+  findAndModify(opts: {
+    query: Query<TRecord>,
+    sort?: SortOrder<TRecord>,
+    doc: Update<TRecord>,
+  }): Promise<any>,
+  count(query?: Query<TRecord>): Promise<number>,
+  distinct<TKey: $Keys<TRecord>>(
+    field: TKey,
+    query?: Query<TRecord>,
+  ): Promise<Array<any>>,
+  insert(
+    docOrDocs: TRecord | Array<TRecord>,
+    opts?: Object,
+  ): Promise<Array<Object> | Object>,
+  update(
+    query: Query<TRecord>,
+    update: Update<TRecord>,
+    opts?: UpdateOptions,
+  ): Promise<Object>,
+  save(doc: Object, opts?: Object): Promise<Object>,
+  remove(query: Query<TRecord>, opts?: {justOne: boolean}): Promise<Object>,
+  rename(name: string, opts?: {dropTarget: boolean}): Promise<void>,
+  drop(): Promise<void>,
+  stats(): Promise<any>,
+  mapReduce(map: any, reduce: any, opts?: Object): Promise<any>,
+  runCommand(cmd: string, opts?: Object): Promise<any>,
+  toString(): string,
+  dropIndexes(): Promise<void>,
+  dropIndex(indexName: string): Promise<void>,
+  createIndex(
+    index:
+      | $Keys<TRecord>
+      | {
+          [P: $Keys<TRecord>]: void | 1 | -1,
+        },
+    opts?: IndexOptions,
+  ): Promise<void>,
+  ensureIndex(
+    index:
+      | $Keys<TRecord>
+      | {
+          [P: $Keys<TRecord>]: void | 1 | -1,
+        },
+    opts?: IndexOptions,
+  ): Promise<void>,
+  getIndexes(): Promise<Array<Object>>,
+  reIndex(): Promise<void>,
+  isCapped(): Promise<boolean>,
+  group(doc: any): Promise<Array<any>>,
+  aggregate(...pipeline: Array<any>): Cursor<any>,
+  initializeOrderedBulkOp(): Bulk,
+  initializeUnorderedBulkOp(): Bulk,
+}
+export default Collection;
+"
+`;
+
+exports[`./ConnectionOptions.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {defaultType as ReadPreferenceType} from './ReadPreference';
+import ReadPreference from './ReadPreference';
+
+interface ConnectionOptions {
+  +poolSize?: number,
+  +ssl?: boolean,
+  +sslCA?: Buffer,
+  +sslCRL?: Buffer,
+  +sslCert?: Buffer,
+  +sslKey?: Buffer,
+  +sslPass?: string,
+  +autoReconnect?: boolean,
+  +noDelay?: boolean,
+  +family?: number,
+  +keepAlive?: number,
+  +connectTimeoutMS?: number,
+  +socketTimeoutMS?: number,
+  +reconnectTries?: number,
+  +reconnectInterval?: number,
+  +ha?: boolean,
+  +haInterval?: number,
+  +replicaSet?: string,
+  +secondaryAcceptableLatencyMS?: number,
+  +acceptableLatencyMS?: number,
+  +connectWithNoPrimary?: boolean,
+  +authSource?: string,
+  +w?: number | string,
+  +wtimeout?: number,
+  +j?: boolean,
+  +forceServerObjectId?: boolean,
+  +serializeFunctions?: boolean,
+  +ignoreUndefined?: boolean,
+  +raw?: boolean,
+  +promoteLongs?: boolean,
+  +promoteBuffers?: boolean,
+  +promoteValues?: boolean,
+  +bufferMaxEntries?: number,
+  +readPreference?: ReadPreferenceType,
+  +domainsEnabled?: boolean,
+  +pkFactory?: Object,
+  +readConcern?: Object,
+  +maxStalenessSeconds?: number,
+  +appname?: string,
+  +loggerLevel?: 'error' | 'warn' | 'info' | 'debug',
+  +validateOptions?: Object,
+}
+export default ConnectionOptions;
+"
+`;
+
+exports[`./Cursor.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import {Readable as ReadableStream} from 'stream';
+const Promise = require('promise');
+import SortOrder from './SortOrder';
+
+declare class Cursor<TRecord> extends ReadableStream {
+  constructor(parent: any): void,
+  next(): Promise<TRecord | null>,
+  rewind(): Promise<void>,
+  toArray(): Promise<Array<TRecord>>,
+  map<TResult>(mapfn: (record: TRecord) => TResult): Promise<Array<TResult>>,
+  forEach(fn: (record: TRecord) => void): Promise<void>,
+  count(): Promise<number>,
+  size(): Promise<number>,
+  explain(): Promise<Object>,
+  destroy(): void,
+  batchSize(size: number): this,
+  hint(hint: string): this,
+  limit(count: number): this,
+  maxTimeMS(value: number): this,
+  max(value: number): this,
+  min(value: number): this,
+  skip(count: number): this,
+  snapshot(value: boolean): this,
+  sort(obj: SortOrder<TRecord>): this,
+  _read(): void,
+  then<TResult1, TResult2>(
+    onfulfilled?:
+      | ((value: Array<TRecord>) => TResult1 | PromiseLike<TResult1>)
+      | void
+      | null,
+    onrejected?:
+      | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+      | void
+      | null,
+  ): Promise<TResult1 | TResult2>,
+  catch<TResult>(
+    onrejected?:
+      | ((reason: any) => TResult | PromiseLike<TResult>)
+      | void
+      | null,
+  ): Promise<Array<TRecord> | TResult>,
+  done(
+    onfulfilled?: ((value: Array<TRecord>) => any) | void | null,
+    onrejected?: ((reason: any) => any) | void | null,
+  ): void,
+  nodeify(callback: void | null): Promise<Array<TRecord>>,
+  nodeify(callback: (err: Error, value: Array<TRecord>) => void): void,
+}
+export default Cursor;
+"
+`;
+
+exports[`./Database.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+const Promise = require('promise');
+import Collection from './Collection';
+
+declare class Database {
+  constructor(parent: any): void,
+  collection<TRecord>(colName: string): Collection<TRecord>,
+  close(force: boolean): Promise<void>,
+  runCommand(command: string | Object): Promise<any>,
+  listCollections(): Promise<Array<Object>>,
+  getCollectionNames(): Promise<Array<string>>,
+  createCollection(name: string, opts: Object): Promise<void>,
+  stats(scale: number): Promise<Object>,
+  dropDatabase(): Promise<void>,
+  createUser(usr: Object): Promise<void>,
+  dropUser(username: string): Promise<void>,
+  eval(fn: Function | string, ...args: Array<any>): Promise<any>,
+  getLastErrorObj(): Promise<Object>,
+  getLastError(): Promise<string>,
+  toString(): string,
+  getConnection(): Promise<this>,
+  _getConnection(): void,
+}
+export default Database;
+"
+`;
+
+exports[`./IndexOptions.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+interface IndexOptions {
+  +w?: number | string,
+  +wtimeout?: number,
+  +j?: boolean,
+  +unique?: boolean,
+  +sparse?: boolean,
+  +background?: boolean,
+  +dropDups?: boolean,
+  +min?: number,
+  +max?: number,
+  +v?: number,
+  +expireAfterSeconds?: number,
+  +name?: string,
+  +partialFilterExpression?: Object,
+  +collation?: Object,
+}
+export default IndexOptions;
+"
+`;
+
+exports[`./Query.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {defaultType as BSONTypeType} from './BSONType';
+import BSONType from './BSONType';
+export type QuerySelector = {
+  $eq?: TValue,
+  $gt?: TValue,
+  $gte?: TValue,
+  $lt?: TValue,
+  $lte?: TValue,
+  $ne?: TValue,
+  $in?: Array<TValue>,
+  $nin?: Array<TValue>,
+  $exists?: boolean,
+  $type?: BSONTypeType | 'number',
+  $mod?: [number, number],
+  $regex?: RegExp,
+  $text?: {
+    $search: string,
+    $language?: string,
+    $caseSensitive?: boolean,
+    $diacriticSensitive?: boolean,
+  },
+  $where?: string | Function,
+  $geoWithin?: any,
+  $geoIntersects?: any,
+  $near?: any,
+  $nearSphere?: any,
+  $all?: TValue & Array<any>,
+  $elemMatch?: QuerySelector<any>,
+  $size?: number,
+  $bitsAllSet: any,
+  $bitsAnySet: any,
+  $bitsAllClear: any,
+  $bitsAnyClear: any,
+};
+export type Query =
+  | {
+      [P: $Keys<TRecord>]: void | any | QuerySelector<any>,
+    }
+  | {$or: Array<Query<TRecord>>}
+  | {$and: Array<Query<TRecord>>}
+  | {$not: Query<TRecord>}
+  | {$nor: Array<Query<TRecord>>};
+export default Query;
+"
+`;
+
+exports[`./ReadPreference.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+type ReadPreferenceType =
+  | 'primary'
+  | 'primaryPreferred'
+  | 'secondary'
+  | 'secondaryPreferred'
+  | 'nearest';
+interface IReadPreference {
+  +PRIMARY: 'primary',
+  +PRIMARY_PREFERRED: 'primaryPreferred',
+  +SECONDARY: 'secondary',
+  +SECONDARY_PREFERRED: 'secondaryPreferred',
+  +NEAREST: 'nearest',
+  +'primary': 'PRIMARY',
+  +'primaryPreferred': 'PRIMARY_PREFERRED',
+  +'secondary': 'SECONDARY',
+  +'secondaryPreferred': 'SECONDARY_PREFERRED',
+  +'nearest': 'NEAREST',
+}
+
+declare var ReadPreference: IReadPreference;
+
+export type {ReadPreferenceType as defaultType};
+export default ReadPreference;
+"
+`;
+
+exports[`./SortOrder.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+export type SortOrder = {
+  [P: $Keys<TRecord>]: void | 1 | -1,
+};
+export default SortOrder;
+"
+`;
+
+exports[`./Update.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+export type NumberUpdate = {
+  [P: $Keys<TRecord>]: void | (number & any),
+};
+export type Update = {
+  $inc?: NumberUpdate<TRecord>,
+  $mul?: NumberUpdate<TRecord>,
+  $rename?: {
+    [P: $Keys<TRecord>]: void | $Keys<TRecord>,
+  },
+  $setOnInsert?: Partial<TRecord>,
+  $set?: Partial<TRecord>,
+  $unset?: {
+    [P: $Keys<TRecord>]: void | 1,
+  },
+  $min?: NumberUpdate<TRecord>,
+  $max?: NumberUpdate<TRecord>,
+  $currentDate?: {
+    [P: $Keys<TRecord>]: void | {$type: 'timestamp'} | true,
+  },
+};
+export default Update;
+"
+`;
+
+exports[`./UpdateOptions.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+interface UpdateOptions {
+  +w?: number | string,
+  +wtimeout?: number,
+  +j?: boolean,
+  +upsert?: boolean,
+  +multi?: boolean,
+  +bypassDocumentValidation?: boolean,
+  +collation?: Object,
+}
+export default UpdateOptions;
+"
+`;
+
+exports[`./build.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+"
+`;
+
+exports[`./index.d.ts 1`] = `
+"// @flow
+// Generated using flowgen2
+
+import type {defaultType as BSONTypeType} from './BSONType';
+import BSONType from './BSONType';
+import Bulk from './Bulk';
+import Collection from './Collection';
+import type ConnectionOptions from './ConnectionOptions';
+import Cursor from './Cursor';
+import Database from './Database';
+import type IndexOptions from './IndexOptions';
+import Query from './Query';
+import type {defaultType as ReadPreferenceType} from './ReadPreference';
+import ReadPreference from './ReadPreference';
+import SortOrder from './SortOrder';
+import Update from './Update';
+import type UpdateOptions from './UpdateOptions';
+export type DatabaseProxy = {
+  [P: CollectionName]: Collection<any>,
+};
+
+declare function connect(
+  connectionString: string,
+  options?: ConnectionOptions,
+): Database;
+
+declare function connect<CollectionName: string>(
+  connectionString: string,
+  collections: Array<string>,
+  options?: ConnectionOptions,
+): Database & DatabaseProxy<CollectionName>;
+
+export default connect;
+export type {BSONTypeType};
+export {BSONType};
+export {Bulk};
+export {Collection};
+export type {ConnectionOptions};
+export {Cursor};
+export {Database};
+export type {IndexOptions};
+export {Query};
+export type {ReadPreferenceType};
+export {ReadPreference};
+export {SortOrder};
+export {Update};
+export type {UpdateOptions};
+"
+`;

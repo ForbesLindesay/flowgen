@@ -23,7 +23,8 @@ export default function transformEnumDeclaration(statement: tt.EnumDeclaration, 
         return `+${transformPropertyName(m.name, scope)}: ${transformExpression(m.initializer as tt.Expression, scope)};`;
       }).join('')}
       ${statement.members.filter(m => !names.includes(transformExpression(m.initializer as tt.Expression, scope))).map((m) => {
-        return `+${transformExpression(m.initializer as tt.Expression, scope)}: '${transformPropertyName(m.name, scope)}';`;
+        const value = transformExpression(m.initializer as tt.Expression, scope);
+        return `+${value[0] === '-' ? `'${value}'` : value}: '${transformPropertyName(m.name, scope)}';`;
       }).join('')}
     }
 

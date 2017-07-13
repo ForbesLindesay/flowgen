@@ -3,6 +3,7 @@ import Scope from './Scope';
 import transformIdentifier from './transformIdentifier';
 import transformStringLiteral from './transformStringLiteral';
 import transformNumericLiteral from './transformNumericLiteral';
+import transformPrefixUnaryExpression from './transformPrefixUnaryExpression';
 
 
 export default function transformExpression(expression: tt.Expression, scope: Scope): string {
@@ -17,6 +18,8 @@ export default function transformExpression(expression: tt.Expression, scope: Sc
       return 'true';
     case tt.SyntaxKind.FalseKeyword:
       return 'false';
+    case tt.SyntaxKind.PrefixUnaryExpression:
+      return transformPrefixUnaryExpression(expression as tt.PrefixUnaryExpression, scope);
   }
   throw scope.createError('Unsupported expression kind ' + tt.SyntaxKind[expression.kind], expression);
 }
