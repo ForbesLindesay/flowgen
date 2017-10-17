@@ -74,7 +74,7 @@ exports[`./Bulk.d.ts 1`] = `
 const Promise = require('promise');
 
 declare class Bulk {
-  constructor(parent: any): void,
+  constructor(parent: any): void;
   find(
     query: any,
   ): {
@@ -84,11 +84,11 @@ declare class Bulk {
     update(updateObj: any): any,
     updateOne(updateObj: any): any,
     replaceOne(updObj: any): any,
-  },
-  insert(doc: any): void,
-  tojson(): Object,
-  toString(): Object,
-  execute(): Promise<any>,
+  };
+  insert(doc: any): void;
+  tojson(): Object;
+  toString(): Object;
+  execute(): Promise<any>;
 }
 export default Bulk;
 "
@@ -108,46 +108,46 @@ import type {defaultType as Update} from './Update';
 import type {defaultType as UpdateOptions} from './UpdateOptions';
 
 declare class Collection<TRecord> {
-  constructor(parent: any): void,
-  find(query?: Query<TRecord>): Cursor<TRecord>,
+  constructor(parent: any): void;
+  find(query?: Query<TRecord>): Cursor<TRecord>;
   find<TKey: $Keys<TRecord>>(
     query: Query<TRecord>,
     projection?: {[key: TKey]: 1},
-  ): Cursor<{[key: TKey]: any}>,
-  findOne(query: Query<TRecord>): Promise<null | TRecord>,
+  ): Cursor<{[key: TKey]: any}>;
+  findOne(query: Query<TRecord>): Promise<null | TRecord>;
   findOne<TKey: $Keys<TRecord>>(
     query: Query<TRecord>,
     projection: {[key: TKey]: 1},
-  ): Promise<null | {[key: TKey]: any}>,
+  ): Promise<null | {[key: TKey]: any}>;
   findAndModify(opts: {
     query: Query<TRecord>,
     sort?: SortOrder<TRecord>,
     doc: Update<TRecord>,
-  }): Promise<any>,
-  count(query?: Query<TRecord>): Promise<number>,
+  }): Promise<any>;
+  count(query?: Query<TRecord>): Promise<number>;
   distinct<TKey: $Keys<TRecord>>(
     field: TKey,
     query?: Query<TRecord>,
-  ): Promise<Array<any>>,
+  ): Promise<Array<any>>;
   insert(
     docOrDocs: TRecord | Array<TRecord>,
     opts?: Object,
-  ): Promise<Array<Object> | Object>,
+  ): Promise<Array<Object> | Object>;
   update(
     query: Query<TRecord>,
     update: Update<TRecord>,
     opts?: UpdateOptions,
-  ): Promise<Object>,
-  save(doc: Object, opts?: Object): Promise<Object>,
-  remove(query: Query<TRecord>, opts?: {justOne: boolean}): Promise<Object>,
-  rename(name: string, opts?: {dropTarget: boolean}): Promise<void>,
-  drop(): Promise<void>,
-  stats(): Promise<any>,
-  mapReduce(map: any, reduce: any, opts?: Object): Promise<any>,
-  runCommand(cmd: string, opts?: Object): Promise<any>,
-  toString(): string,
-  dropIndexes(): Promise<void>,
-  dropIndex(indexName: string): Promise<void>,
+  ): Promise<Object>;
+  save(doc: Object, opts?: Object): Promise<Object>;
+  remove(query: Query<TRecord>, opts?: {justOne: boolean}): Promise<Object>;
+  rename(name: string, opts?: {dropTarget: boolean}): Promise<void>;
+  drop(): Promise<void>;
+  stats(): Promise<any>;
+  mapReduce(map: any, reduce: any, opts?: Object): Promise<any>;
+  runCommand(cmd: string, opts?: Object): Promise<any>;
+  toString(): string;
+  dropIndexes(): Promise<void>;
+  dropIndex(indexName: string): Promise<void>;
   createIndex(
     index:
       | $Keys<TRecord>
@@ -155,7 +155,7 @@ declare class Collection<TRecord> {
           [P: $Keys<TRecord>]: void | 1 | -1,
         },
     opts?: IndexOptions,
-  ): Promise<void>,
+  ): Promise<void>;
   ensureIndex(
     index:
       | $Keys<TRecord>
@@ -163,14 +163,14 @@ declare class Collection<TRecord> {
           [P: $Keys<TRecord>]: void | 1 | -1,
         },
     opts?: IndexOptions,
-  ): Promise<void>,
-  getIndexes(): Promise<Array<Object>>,
-  reIndex(): Promise<void>,
-  isCapped(): Promise<boolean>,
-  group(doc: any): Promise<Array<any>>,
-  aggregate(...pipeline: Array<any>): Cursor<any>,
-  initializeOrderedBulkOp(): Bulk,
-  initializeUnorderedBulkOp(): Bulk,
+  ): Promise<void>;
+  getIndexes(): Promise<Array<Object>>;
+  reIndex(): Promise<void>;
+  isCapped(): Promise<boolean>;
+  group(doc: any): Promise<Array<any>>;
+  aggregate(...pipeline: Array<any>): Cursor<any>;
+  initializeOrderedBulkOp(): Bulk;
+  initializeUnorderedBulkOp(): Bulk;
 }
 export default Collection;
 "
@@ -184,47 +184,47 @@ import type {defaultType as ReadPreferenceType} from './ReadPreference';
 import ReadPreference from './ReadPreference';
 
 interface ConnectionOptions {
-  +poolSize?: number,
-  +ssl?: boolean,
-  +sslCA?: Buffer,
-  +sslCRL?: Buffer,
-  +sslCert?: Buffer,
-  +sslKey?: Buffer,
-  +sslPass?: string,
-  +autoReconnect?: boolean,
-  +noDelay?: boolean,
-  +family?: number,
-  +keepAlive?: number,
-  +connectTimeoutMS?: number,
-  +socketTimeoutMS?: number,
-  +reconnectTries?: number,
-  +reconnectInterval?: number,
-  +ha?: boolean,
-  +haInterval?: number,
-  +replicaSet?: string,
-  +secondaryAcceptableLatencyMS?: number,
-  +acceptableLatencyMS?: number,
-  +connectWithNoPrimary?: boolean,
-  +authSource?: string,
-  +w?: number | string,
-  +wtimeout?: number,
-  +j?: boolean,
-  +forceServerObjectId?: boolean,
-  +serializeFunctions?: boolean,
-  +ignoreUndefined?: boolean,
-  +raw?: boolean,
-  +promoteLongs?: boolean,
-  +promoteBuffers?: boolean,
-  +promoteValues?: boolean,
-  +bufferMaxEntries?: number,
-  +readPreference?: ReadPreferenceType,
-  +domainsEnabled?: boolean,
-  +pkFactory?: Object,
-  +readConcern?: Object,
-  +maxStalenessSeconds?: number,
-  +appname?: string,
-  +loggerLevel?: 'error' | 'warn' | 'info' | 'debug',
-  +validateOptions?: Object,
+  +poolSize?: number;
+  +ssl?: boolean;
+  +sslCA?: Buffer;
+  +sslCRL?: Buffer;
+  +sslCert?: Buffer;
+  +sslKey?: Buffer;
+  +sslPass?: string;
+  +autoReconnect?: boolean;
+  +noDelay?: boolean;
+  +family?: number;
+  +keepAlive?: number;
+  +connectTimeoutMS?: number;
+  +socketTimeoutMS?: number;
+  +reconnectTries?: number;
+  +reconnectInterval?: number;
+  +ha?: boolean;
+  +haInterval?: number;
+  +replicaSet?: string;
+  +secondaryAcceptableLatencyMS?: number;
+  +acceptableLatencyMS?: number;
+  +connectWithNoPrimary?: boolean;
+  +authSource?: string;
+  +w?: number | string;
+  +wtimeout?: number;
+  +j?: boolean;
+  +forceServerObjectId?: boolean;
+  +serializeFunctions?: boolean;
+  +ignoreUndefined?: boolean;
+  +raw?: boolean;
+  +promoteLongs?: boolean;
+  +promoteBuffers?: boolean;
+  +promoteValues?: boolean;
+  +bufferMaxEntries?: number;
+  +readPreference?: ReadPreferenceType;
+  +domainsEnabled?: boolean;
+  +pkFactory?: Object;
+  +readConcern?: Object;
+  +maxStalenessSeconds?: number;
+  +appname?: string;
+  +loggerLevel?: 'error' | 'warn' | 'info' | 'debug';
+  +validateOptions?: Object;
 }
 export type {ConnectionOptions as defaultType};
 "
@@ -239,42 +239,42 @@ const Promise = require('promise');
 import type {defaultType as SortOrder} from './SortOrder';
 
 declare class Cursor<TRecord> extends ReadableStream {
-  constructor(parent: any): void,
-  next(): Promise<TRecord | null>,
-  rewind(): Promise<void>,
-  toArray(): Promise<Array<TRecord>>,
-  map<TResult>(mapfn: (record: TRecord) => TResult): Promise<Array<TResult>>,
-  forEach(fn: (record: TRecord) => void): Promise<void>,
-  count(): Promise<number>,
-  size(): Promise<number>,
-  explain(): Promise<Object>,
-  destroy(): void,
-  batchSize(size: number): this,
-  hint(hint: string): this,
-  limit(count: number): this,
-  maxTimeMS(value: number): this,
-  max(value: number): this,
-  min(value: number): this,
-  skip(count: number): this,
-  snapshot(value: boolean): this,
-  sort(obj: SortOrder<TRecord>): this,
-  _read(): void,
+  constructor(parent: any): void;
+  next(): Promise<TRecord | null>;
+  rewind(): Promise<void>;
+  toArray(): Promise<Array<TRecord>>;
+  map<TResult>(mapfn: (record: TRecord) => TResult): Promise<Array<TResult>>;
+  forEach(fn: (record: TRecord) => void): Promise<void>;
+  count(): Promise<number>;
+  size(): Promise<number>;
+  explain(): Promise<Object>;
+  destroy(): void;
+  batchSize(size: number): this;
+  hint(hint: string): this;
+  limit(count: number): this;
+  maxTimeMS(value: number): this;
+  max(value: number): this;
+  min(value: number): this;
+  skip(count: number): this;
+  snapshot(value: boolean): this;
+  sort(obj: SortOrder<TRecord>): this;
+  _read(): void;
   then<TResult1, TResult2>(
     onfulfilled?:
       | ((value: Array<TRecord>) => TResult1 | Promise<TResult1>)
       | void
       | null,
     onrejected?: ((reason: any) => TResult2 | Promise<TResult2>) | void | null,
-  ): Promise<TResult1 | TResult2>,
+  ): Promise<TResult1 | TResult2>;
   catch<TResult>(
     onrejected?: ((reason: any) => TResult | Promise<TResult>) | void | null,
-  ): Promise<Array<TRecord> | TResult>,
+  ): Promise<Array<TRecord> | TResult>;
   done(
     onfulfilled?: ((value: Array<TRecord>) => any) | void | null,
     onrejected?: ((reason: any) => any) | void | null,
-  ): void,
-  nodeify(callback: void | null): Promise<Array<TRecord>>,
-  nodeify(callback: (err: Error, value: Array<TRecord>) => void): void,
+  ): void;
+  nodeify(callback: void | null): Promise<Array<TRecord>>;
+  nodeify(callback: (err: Error, value: Array<TRecord>) => void): void;
 }
 export default Cursor;
 "
@@ -288,23 +288,23 @@ const Promise = require('promise');
 import Collection from './Collection';
 
 declare class Database {
-  constructor(parent: any): void,
-  collection<TRecord>(colName: string): Collection<TRecord>,
-  close(force: boolean): Promise<void>,
-  runCommand(command: string | Object): Promise<any>,
-  listCollections(): Promise<Array<Object>>,
-  getCollectionNames(): Promise<Array<string>>,
-  createCollection(name: string, opts: Object): Promise<void>,
-  stats(scale: number): Promise<Object>,
-  dropDatabase(): Promise<void>,
-  createUser(usr: Object): Promise<void>,
-  dropUser(username: string): Promise<void>,
-  eval(fn: Function | string, ...args: Array<any>): Promise<any>,
-  getLastErrorObj(): Promise<Object>,
-  getLastError(): Promise<string>,
-  toString(): string,
-  getConnection(): Promise<this>,
-  _getConnection(): void,
+  constructor(parent: any): void;
+  collection<TRecord>(colName: string): Collection<TRecord>;
+  close(force: boolean): Promise<void>;
+  runCommand(command: string | Object): Promise<any>;
+  listCollections(): Promise<Array<Object>>;
+  getCollectionNames(): Promise<Array<string>>;
+  createCollection(name: string, opts: Object): Promise<void>;
+  stats(scale: number): Promise<Object>;
+  dropDatabase(): Promise<void>;
+  createUser(usr: Object): Promise<void>;
+  dropUser(username: string): Promise<void>;
+  eval(fn: Function | string, ...args: Array<any>): Promise<any>;
+  getLastErrorObj(): Promise<Object>;
+  getLastError(): Promise<string>;
+  toString(): string;
+  getConnection(): Promise<this>;
+  _getConnection(): void;
 }
 export default Database;
 "
@@ -315,20 +315,20 @@ exports[`./IndexOptions.d.ts 1`] = `
 // Generated using flowgen2
 
 interface IndexOptions {
-  +w?: number | string,
-  +wtimeout?: number,
-  +j?: boolean,
-  +unique?: boolean,
-  +sparse?: boolean,
-  +background?: boolean,
-  +dropDups?: boolean,
-  +min?: number,
-  +max?: number,
-  +v?: number,
-  +expireAfterSeconds?: number,
-  +name?: string,
-  +partialFilterExpression?: Object,
-  +collation?: Object,
+  +w?: number | string;
+  +wtimeout?: number;
+  +j?: boolean;
+  +unique?: boolean;
+  +sparse?: boolean;
+  +background?: boolean;
+  +dropDups?: boolean;
+  +min?: number;
+  +max?: number;
+  +v?: number;
+  +expireAfterSeconds?: number;
+  +name?: string;
+  +partialFilterExpression?: Object;
+  +collation?: Object;
 }
 export type {IndexOptions as defaultType};
 "
@@ -405,11 +405,11 @@ declare var ReadPreference: {
   +SECONDARY: 'secondary',
   +SECONDARY_PREFERRED: 'secondaryPreferred',
   +NEAREST: 'nearest',
-  +'primary': 'PRIMARY',
-  +'primaryPreferred': 'PRIMARY_PREFERRED',
-  +'secondary': 'SECONDARY',
-  +'secondaryPreferred': 'SECONDARY_PREFERRED',
-  +'nearest': 'NEAREST',
+  +primary: 'PRIMARY',
+  +primaryPreferred: 'PRIMARY_PREFERRED',
+  +secondary: 'SECONDARY',
+  +secondaryPreferred: 'SECONDARY_PREFERRED',
+  +nearest: 'NEAREST',
 };
 
 export type {ReadPreferenceType as defaultType};
@@ -467,13 +467,13 @@ exports[`./UpdateOptions.d.ts 1`] = `
 // Generated using flowgen2
 
 interface UpdateOptions {
-  +w?: number | string,
-  +wtimeout?: number,
-  +j?: boolean,
-  +upsert?: boolean,
-  +multi?: boolean,
-  +bypassDocumentValidation?: boolean,
-  +collation?: Object,
+  +w?: number | string;
+  +wtimeout?: number;
+  +j?: boolean;
+  +upsert?: boolean;
+  +multi?: boolean;
+  +bypassDocumentValidation?: boolean;
+  +collation?: Object;
 }
 export type {UpdateOptions as defaultType};
 "

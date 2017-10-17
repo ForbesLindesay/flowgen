@@ -61,17 +61,17 @@ export type {StackElementType};
 export {StackElement};
 
 declare class State {
-  stack: Array<StackElementType>,
-  regexpStart: boolean,
-  escaped: boolean,
-  hasDollar: boolean,
-  src: string,
-  history: string,
-  lastChar: string,
-  current(): StackElementType,
-  isString(): boolean,
-  isComment(): boolean,
-  isNesting(opts?: {+ignoreLineComment?: boolean}): boolean,
+  stack: Array<StackElementType>;
+  regexpStart: boolean;
+  escaped: boolean;
+  hasDollar: boolean;
+  src: string;
+  history: string;
+  lastChar: string;
+  current(): StackElementType;
+  isString(): boolean;
+  isComment(): boolean;
+  isNesting(opts?: {+ignoreLineComment?: boolean}): boolean;
 }
 export {State};
 

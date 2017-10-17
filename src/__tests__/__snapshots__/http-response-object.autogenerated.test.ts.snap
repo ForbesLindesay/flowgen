@@ -16,18 +16,18 @@ exports[`./index.d.ts 1`] = `
 import type {Headers} from './headers';
 
 declare class Response {
-  +statusCode: number,
-  +headers: Headers,
-  +body: Buffer | string,
-  +url: string,
+  +statusCode: number;
+  +headers: Headers;
+  +body: Buffer | string;
+  +url: string;
   constructor(
     statusCode: number,
     headers: Headers,
     body: Buffer | string,
     url: string,
-  ): void,
-  getBody(encoding: string): string,
-  getBody(): Buffer | string,
+  ): void;
+  getBody(encoding: string): string;
+  getBody(): Buffer | string;
 }
 
 module.exports = Response;

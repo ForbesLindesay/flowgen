@@ -7,11 +7,11 @@ exports[`./CachedResponse.d.ts 1`] = `
 import type {Headers} from './Headers';
 
 interface CachedResponse {
-  statusCode: number,
-  headers: Headers,
-  body: stream$Readable,
-  requestHeaders: Headers,
-  requestTimestamp: number,
+  statusCode: number;
+  headers: Headers;
+  body: stream$Readable;
+  requestHeaders: Headers;
+  requestTimestamp: number;
 }
 
 export type {CachedResponse};
@@ -41,16 +41,16 @@ import type {ICache} from './ICache';
 import type {CachedResponse} from './CachedResponse';
 
 declare class FileCache {
-  constructor(location: string): void,
+  constructor(location: string): void;
   getResponse(
     url: string,
     callback: (err: null | Error, response: null | CachedResponse) => void,
-  ): void,
-  setResponse(url: string, response: CachedResponse): void,
+  ): void;
+  setResponse(url: string, response: CachedResponse): void;
   invalidateResponse(
     url: string,
     callback: (err: ErrnoError | null) => void,
-  ): void,
+  ): void;
 }
 export default FileCache;
 "
@@ -79,6 +79,7 @@ type HttpVerb =
   | 'OPTIONS'
   | 'TRACE'
   | 'PATCH';
+
 export type {HttpVerb};
 "
 `;
@@ -93,9 +94,9 @@ interface ICache {
   getResponse(
     url: string,
     cb: (err: Error | null, response: CachedResponse | null) => void,
-  ): void,
-  setResponse(url: string, response: CachedResponse | null): void,
-  invalidateResponse(url: string, cb: (err: Error | null) => void): void,
+  ): void;
+  setResponse(url: string, response: CachedResponse | null): void;
+  invalidateResponse(url: string, cb: (err: Error | null) => void): void;
 }
 
 export type {ICache};
@@ -112,12 +113,12 @@ declare class MemoryCache {
   getResponse(
     url: string,
     callback: (err: null | Error, response: null | CachedResponse) => void,
-  ): void,
-  setResponse(url: string, response: CachedResponse): void,
+  ): void;
+  setResponse(url: string, response: CachedResponse): void;
   invalidateResponse(
     url: string,
     callback: (err: ErrnoError | null) => void,
-  ): void,
+  ): void;
 }
 export default MemoryCache;
 "
@@ -135,35 +136,35 @@ import type {CachedResponse} from './CachedResponse';
 type Response<T> = any;
 
 interface Options {
-  agent?: Agent | boolean,
-  allowRedirectHeaders?: Array<string>,
-  cache?: 'file' | 'memory' | ICache,
-  followRedirects?: boolean,
-  gzip?: boolean,
-  headers?: Headers,
-  ignoreFailedInvalidation?: boolean,
-  maxRedirects?: number,
-  maxRetries?: number,
-  retry?: boolean,
+  agent?: Agent | boolean;
+  allowRedirectHeaders?: Array<string>;
+  cache?: 'file' | 'memory' | ICache;
+  followRedirects?: boolean;
+  gzip?: boolean;
+  headers?: Headers;
+  ignoreFailedInvalidation?: boolean;
+  maxRedirects?: number;
+  maxRetries?: number;
+  retry?: boolean;
   retryDelay?:
     | number
     | ((
         err: ErrnoError | null,
         res: Response<stream$Readable> | void,
         attemptNumber: number,
-      ) => number),
-  socketTimeout?: number,
-  timeout?: number,
+      ) => number);
+  socketTimeout?: number;
+  timeout?: number;
   isMatch?: (
     requestHeaders: Headers,
     cachedResponse: CachedResponse,
     defaultValue: boolean,
-  ) => boolean,
+  ) => boolean;
   isExpired?: (
     cachedResponse: CachedResponse,
     defaultValue: boolean,
-  ) => boolean,
-  canCache?: (res: Response<stream$Readable>, defaultValue: boolean) => boolean,
+  ) => boolean;
+  canCache?: (res: Response<stream$Readable>, defaultValue: boolean) => boolean;
 }
 
 export type {Options};
