@@ -109,6 +109,7 @@ export default function transformImportDeclaration(
             local === imported ? `{${local}}` : `{${imported} as ${local}}`;
           if (imported in moduleAliases) {
             result.push(`type ${local} = ${moduleAliases[imported]};`);
+            scope.addLocalTypeName(local);
           } else if (importedScope.exportedTypes.has(imported)) {
             scope.addLocalTypeName(local);
             const specifierText =
