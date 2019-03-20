@@ -8,6 +8,13 @@ import transformStringLiteral from './transformStringLiteral';
 
 // TODO: share code with transformImportEqualsDeclaration
 
+const aliases: {[moduleSpecifier: string]: {[exportName: string]: string}} = {
+  // import { IncomingHttpHeaders } from 'http';
+  http: {
+    IncomingHttpHeaders: 'Object',
+  },
+};
+
 function packageFilter(pkg: any) {
   if (pkg.types) {
     pkg.main = pkg.types;
@@ -48,6 +55,11 @@ export default function transformImportDeclaration(
     return '';
   }
   const moduleSpecifier = statement.moduleSpecifier as tt.StringLiteral;
+  let moduleAliases: {[importedName: string]: string} = {};
+  if (moduleSpecifier.text in aliases) {
+    moduleAliases = aliases[moduleSpecifier.text];
+  }
+
   const importedFileName = transformStringLiteral(moduleSpecifier, scope);
   const filename = tryResolve(
     moduleSpecifier.text,
@@ -90,16 +102,17 @@ export default function transformImportDeclaration(
         const specifier = namedBindings as tt.NamedImports;
         specifier.elements.forEach(importSpecifier => {
           const local = importSpecifier.name.text;
-          const imported = (importSpecifier.propertyName ||
-            importSpecifier.name).text;
-          const specifierText = local === imported
-            ? `{${local}}`
-            : `{${imported} as ${local}}`;
-          if (importedScope.exportedTypes.has(imported)) {
+          const imported = (
+            importSpecifier.propertyName || importSpecifier.name
+          ).text;
+          const specifierText =
+            local === imported ? `{${local}}` : `{${imported} as ${local}}`;
+          if (imported in moduleAliases) {
+            result.push(`type ${local} = ${moduleAliases[imported]};`);
+          } else if (importedScope.exportedTypes.has(imported)) {
             scope.addLocalTypeName(local);
-            const specifierText = local === imported
-              ? `{${local}}`
-              : `{${imported} as ${local}}`;
+            const specifierText =
+              local === imported ? `{${local}}` : `{${imported} as ${local}}`;
             result.push(
               `import type ${specifierText} from ${importedFileName};`,
             );

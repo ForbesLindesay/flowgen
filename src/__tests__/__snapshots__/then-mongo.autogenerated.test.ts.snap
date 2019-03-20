@@ -248,7 +248,7 @@ declare class Cursor<TRecord> extends ReadableStream {
   count(): Promise<number>;
   size(): Promise<number>;
   explain(): Promise<Object>;
-  destroy(): void;
+  destroy(): this;
   batchSize(size: number): this;
   hint(hint: string): this;
   limit(count: number): this;

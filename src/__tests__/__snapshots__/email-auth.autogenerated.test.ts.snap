@@ -44,9 +44,11 @@ type Variable = string | ((v: Variables) => string);
 export type {Variable};
 
 interface ClientOptions<TUser> {
-  saveToken: (token: {email: string, token: string, expiry: number}) => Promise<
-    string,
-  >;
+  saveToken: (token: {
+    email: string,
+    token: string,
+    expiry: number,
+  }) => Promise<string>;
   getTokenByID: (
     id: string,
   ) => Promise<{email: string, token: string, expiry: number} | null>;
